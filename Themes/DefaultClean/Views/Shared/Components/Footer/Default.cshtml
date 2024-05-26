@@ -5,6 +5,12 @@
 @using Nop.Core.Domain.Topics
 
 @inject IWorkContext workContext
+@inject IThemeContext themeContext
+
+@{
+	var themeName = await themeContext.GetWorkingThemeNameAsync();
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-footer.css");
+}
 
 <footer class="footer">
 	<div class="footer-upper">
