@@ -188,22 +188,6 @@
 
 <script asp-location="Footer">
 	$(function () {
-		$('.footer-block .title').on('click', function () {
-			var e = window, a = 'inner';
-			if (!('innerWidth' in window)) {
-				a = 'client';
-				e = document.documentElement || document.body;
-			}
-			var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
-			if (result.width < 769) {
-				$(this).siblings('.list').slideToggle('slow');
-			}
-		});
-	});
-</script>
-
-<script asp-location="Footer">
-	$(function () {
 		$('.block .title').on('click', function () {
 			var e = window, a = 'inner';
 			if (!('innerWidth' in window)) {

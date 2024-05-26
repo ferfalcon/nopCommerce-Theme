@@ -21,11 +21,10 @@
 
 .footer-block .title {
 	margin: 0 0 1px;
-	background: #4ab2f1 url('../images/toggle-white.png') right center no-repeat;
+	background: #4ab2f1;
 	padding: 10px 15px;
 	font-size: 20px;
 	color: #fff;
-	cursor: pointer;
 	font-weight: normal;
 }
 
@@ -34,7 +33,6 @@
 }
 
 .footer-block .list {
-	display: none;
 	margin: 0 0 20px;
 	background-color: #fff;
 	padding: 10px 15px;
