@@ -6,12 +6,12 @@
 
 @inject IWorkContext workContext
 
-<div class="footer">
+<footer class="footer">
 	<div class="footer-upper">
-		<div class="footer-block   information">
-			<div class="title">
+		<nav class="footer-block   information">
+			<h2 class="title">
 				<strong>@T("Footer.Information")</strong>
-			</div>
+			</h2>
 			<ul class="list">
 				@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
 				{
@@ -32,11 +32,12 @@
 					</li>
 				}
 			</ul>
-		</div>
-		<div class="footer-block   customer-service">
-			<div class="title">
+		</nav>
+
+		<nav class="footer-block   customer-service">
+			<h2 class="title">
 				<strong>@T("Footer.CustomerService")</strong>
-			</div>
+			</h2>
 			<ul class="list">
 				@if (Model.SearchEnabled && Model.DisplayProductSearchFooterItem)
 				{
@@ -93,11 +94,12 @@
 					</li>
 				}
 			</ul>
-		</div>
-		<div class="footer-block   my-account">
-			<div class="title">
+		</nav>
+
+		<nav class="footer-block   my-account">
+			<h2 class="title">
 				<strong>@T("Footer.MyAccount")</strong>
-			</div>
+			</h2>
 			<ul class="list">
 				@if (Model.DisplayCustomerInfoFooterItem)
 				{
@@ -142,22 +144,26 @@
 					</li>
 				}
 			</ul>
-		</div>
+		</nav>
+
 		<div class="footer-block   follow-us">
-			<div class="social">
-				<div class="title">
+			<nav class="social">
+				<h2 class="title">
 					<strong>@T("Footer.FollowUs")</strong>
-				</div>
+				</h2>
 				@await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
-			</div>
+			</nav>
+
 			@await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
 		</div>
 	</div>
+
 	<div class="footer-lower">
 		<div class="footer-info">
 			<span class="footer-disclaimer">
 				@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
 			</span>
+
 			@if (Model.DisplayTaxShippingInfoFooter)
 			{
 				var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
@@ -166,6 +172,7 @@
 				</span>
 			}
 		</div>
+
 		@if (!Model.HidePoweredByNopCommerce)
 		{
 			<div class="footer-powered-by">
@@ -174,10 +181,12 @@
 				Powered by <a href="https://www.nopcommerce.com/" target="_blank" @(Model.IsHomePage ? string.Empty : "rel=nofollow")>nopCommerce</a>
 			</div>
 		}
+
 		@await Component.InvokeAsync(typeof(StoreThemeSelectorViewComponent))
 	</div>
+
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.Footer, additionalData = Model })
-</div>
+</footer>
 
 <script asp-location="Footer">
 	$(function () {
