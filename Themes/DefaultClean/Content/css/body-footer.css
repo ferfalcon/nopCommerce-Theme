@@ -28,10 +28,6 @@
 	font-weight: normal;
 }
 
-.footer-block .title strong {
-	font-weight: normal;
-}
-
 .footer-block .list {
 	margin: 0 0 20px;
 	background-color: #fff;
@@ -101,50 +97,6 @@
 	background-position: -152px 0;
 }
 
-.newsletter-email {
-	display: inline-block;
-	overflow: hidden;
-}
-
-.newsletter-email:focus-within {
-	overflow: visible;
-}
-
-.newsletter-email input[type="email"] {
-	float: left;
-	width: 180px;
-	height: 36px;
-	margin: 0 -1px 0 0;
-}
-
-.newsletter-subscribe-button {
-	float: left;
-	height: 36px;
-	border: none;
-	background-color: #4ab2f1;
-	padding: 0 15px;
-	text-align: center;
-	color: #fff;
-	text-transform: uppercase;
-}
-
-.newsletter-subscribe-button:hover,
-.newsletter-subscribe-button:focus {
-	background-color: #248ece;
-}
-
-.newsletter-email .options {
-	clear: both;
-	padding: 10px 0 0;
-}
-
-.newsletter-validation,
-.newsletter-result {
-	width: 100%;
-	overflow: hidden;
-	line-height: 28px;
-}
-
 .footer-lower {
 	width: 95%;
 	margin: auto;
@@ -189,10 +141,6 @@
 @media (min-width: 481px) {
 	.footer-block {
 		width: 85%;
-	}
-
-	.newsletter-email input[type="text"] {
-		width: 240px;
 	}
 }
 
@@ -258,23 +206,6 @@
 
 	.follow-us .social li {
 		margin: 0 10px 0 0;
-	}
-
-	.newsletter-email {
-		display: block;
-	}
-
-	.newsletter-email input[type="text"] {
-		width: 200px;
-	}
-
-	.newsletter-email .newsletter-subscribe-button {
-		min-width: 100px;
-		padding: 0 5px;
-	}
-
-	.newsletter-validation .field-validation-valid {
-		text-align: left;
 	}
 
 	.footer-lower {
