@@ -147,11 +147,7 @@
 		</nav>
 
 		<div class="footer-block   follow-us">
-			<nav class="social">
-				<h2 class="title">@T("Footer.FollowUs")</h2>
-				@await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
-			</nav>
-
+			@await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
 			@await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
 		</div>
 	</div>
