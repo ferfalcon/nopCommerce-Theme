@@ -1,0 +1,27 @@
+@model FooterModel
+
+@using Nop.Core.Domain.Topics
+
+<nav class="footer-block   information">
+	<h2 class="title">@T("Footer.Information")</h2>
+	<ul class="list">
+		@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a>
+			</li>
+		}
+		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+		{
+			<li>
+				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+			</li>
+		}
+		@if (Model.DisplayContactUsFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a>
+			</li>
+		}
+	</ul>
+</nav>

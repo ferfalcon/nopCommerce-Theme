@@ -1,0 +1,51 @@
+@model FooterModel
+
+@using Nop.Core.Domain.Topics
+
+<nav class="footer-block   my-account">
+	<h2 class="title">@T("Footer.MyAccount")</h2>
+	<ul class="list">
+		@if (Model.DisplayCustomerInfoFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a>
+			</li>
+		}
+		@if (Model.DisplayCustomerOrdersFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
+			</li>
+		}
+		@if (Model.DisplayCustomerAddressesFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a>
+			</li>
+		}
+		@if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
+			</li>
+		}
+		@if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a>
+			</li>
+		}
+		@if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a>
+			</li>
+		}
+		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+		{
+			<li>
+				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+			</li>
+		}
+	</ul>
+</nav>

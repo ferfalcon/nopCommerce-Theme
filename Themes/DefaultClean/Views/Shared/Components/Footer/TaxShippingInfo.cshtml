@@ -1,0 +1,17 @@
+@model FooterModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+
+@inject IWorkContext workContext
+
+@{
+	var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+}
+
+@if (Model.DisplayTaxShippingInfoFooter)
+{
+	<span class="footer-tax-shipping">
+		@T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
+	</span>
+}

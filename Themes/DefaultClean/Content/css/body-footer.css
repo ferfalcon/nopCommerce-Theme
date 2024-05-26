@@ -239,12 +239,6 @@
 		padding: 35px 10px;
 	}
 
-	.footer-upper:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-
 	.footer-block {
 		float: left;
 		width: 220px;
@@ -287,12 +281,6 @@
 		position: relative;
 		width: 980px;
 		padding: 25px 5px;
-	}
-
-	.footer-lower:after {
-		content: "";
-		display: block;
-		clear: both;
 	}
 
 	.footer-info {
