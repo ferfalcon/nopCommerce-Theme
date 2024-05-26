@@ -15,9 +15,7 @@
 <footer class="footer">
 	<div class="footer-upper">
 		<nav class="footer-block   information">
-			<h2 class="title">
-				<strong>@T("Footer.Information")</strong>
-			</h2>
+			<h2 class="title">@T("Footer.Information")</h2>
 			<ul class="list">
 				@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
 				{
@@ -41,9 +39,7 @@
 		</nav>
 
 		<nav class="footer-block   customer-service">
-			<h2 class="title">
-				<strong>@T("Footer.CustomerService")</strong>
-			</h2>
+			<h2 class="title">@T("Footer.CustomerService")</h2>
 			<ul class="list">
 				@if (Model.SearchEnabled && Model.DisplayProductSearchFooterItem)
 				{
@@ -103,9 +99,7 @@
 		</nav>
 
 		<nav class="footer-block   my-account">
-			<h2 class="title">
-				<strong>@T("Footer.MyAccount")</strong>
-			</h2>
+			<h2 class="title">@T("Footer.MyAccount")</h2>
 			<ul class="list">
 				@if (Model.DisplayCustomerInfoFooterItem)
 				{
@@ -154,9 +148,7 @@
 
 		<div class="footer-block   follow-us">
 			<nav class="social">
-				<h2 class="title">
-					<strong>@T("Footer.FollowUs")</strong>
-				</h2>
+				<h2 class="title">@T("Footer.FollowUs")</h2>
 				@await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
 			</nav>
 
