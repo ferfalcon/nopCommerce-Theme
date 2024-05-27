@@ -3,7 +3,7 @@
 @{
 	var themeName = await themeContext.GetWorkingThemeNameAsync();
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-footer.css");
-	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/footer-nav-block.css");
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/navigation-block.css");
 }
 
 <footer class="footer">
@@ -11,7 +11,8 @@
 		@await Html.PartialAsync("InformationNav.cshtml")
 		@await Html.PartialAsync("CustomerServiceNav.cshtml")
 		@await Html.PartialAsync("MyAccountNav.cshtml")
-		<div class="footer-block   follow-us">
+
+		<div>
 			@await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
 			@await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
 		</div>
