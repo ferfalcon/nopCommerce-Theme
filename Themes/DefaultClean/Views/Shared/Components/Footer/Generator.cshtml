@@ -1,0 +1,15 @@
+@model FooterModel
+
+@inject IThemeContext themeContext
+
+@{
+	var themeName = await themeContext.GetWorkingThemeNameAsync();
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/footer-generator.css");
+}
+
+@if (!Model.HidePoweredByNopCommerce)
+{
+	<p class="generator">
+		Powered by <a href="https://www.nopcommerce.com/" target="_blank" @(Model.IsHomePage ? string.Empty : "rel=nofollow")>nopCommerce</a>
+	</p>
+}

@@ -3,6 +3,7 @@
 @{
 	var themeName = await themeContext.GetWorkingThemeNameAsync();
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-footer.css");
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/footer-nav-block.css");
 }
 
 <footer class="footer">
@@ -17,11 +18,9 @@
 	</div>
 
 	<div class="footer-lower">
-		<p class="footer-info">
-			@await Html.PartialAsync("Copyright.cshtml")
-			@await Html.PartialAsync("TaxShippingInfo.cshtml")
-		</p>
-		@await Html.PartialAsync("PoweredBy.cshtml")
+		@await Html.PartialAsync("Generator.cshtml")
+		@await Html.PartialAsync("Copyright.cshtml")
+		@await Html.PartialAsync("TaxShippingInfo.cshtml")
 		@await Component.InvokeAsync(typeof(StoreThemeSelectorViewComponent))
 	</div>
 

@@ -4,9 +4,12 @@
 @using Nop.Core.Domain.Tax
 
 @inject IWorkContext workContext
+@inject IThemeContext themeContext
 
 @{
 	var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+	var themeName = await themeContext.GetWorkingThemeNameAsync();
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/footer-tax-shipping.css");
 }
 
 @if (Model.DisplayTaxShippingInfoFooter)
