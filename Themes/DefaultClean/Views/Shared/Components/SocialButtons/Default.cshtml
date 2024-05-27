@@ -1,36 +1,53 @@
 ﻿@model SocialModel
 
-<nav class="social">
+@inject IThemeContext themeContext
+
+@{
+	var themeName = await themeContext.GetWorkingThemeNameAsync();
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/social-buttons.css");
+}
+
+<nav class="social-buttons">
 	<h2 class="title">@T("Footer.FollowUs")</h2>
-	<ul class="networks">
+	<ul>
 		@if (!string.IsNullOrEmpty(Model.FacebookLink))
 		{
-			<li class="facebook">
-				<a href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Facebook")</a>
+			<li>
+				<a class="social-buttons__facebook" href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">
+					@T("Footer.FollowUs.Facebook")
+				</a>
 			</li>
 		}
 		@if (!string.IsNullOrEmpty(Model.TwitterLink))
 		{
-			<li class="twitter">
-				<a href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Twitter")</a>
-			</li>
-		}
-		@if (Model.NewsEnabled)
-		{
-			<li class="rss">
-				<a href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">@T("Footer.FollowUs.RSS")</a>
+			<li>
+				<a class="social-buttons__twitter" href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">
+					@T("Footer.FollowUs.Twitter")
+				</a>
 			</li>
 		}
 		@if (!string.IsNullOrEmpty(Model.YoutubeLink))
 		{
-			<li class="youtube">
-				<a href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Youtube")</a>
+			<li>
+				<a class="social-buttons__youtube" href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">
+					@T("Footer.FollowUs.Youtube")
+				</a>
 			</li>
 		}
 		@if (!string.IsNullOrEmpty(Model.InstagramLink))
 		{
-			<li class="instagram">
-				<a href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Instagram")</a>
+			<li>
+				<a class="social-buttons__instagram" href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">
+					@T("Footer.FollowUs.Instagram")
+				</a>
+			</li>
+		}
+		@if (Model.NewsEnabled)
+		{
+			<li>
+				<a class="social-buttons__rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">
+					@T("Footer.FollowUs.RSS")
+				</a>
 			</li>
 		}
 	</ul>
