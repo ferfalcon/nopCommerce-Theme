@@ -1,89 +1,59 @@
 .newsletter {	
-	text-align: center;
-	
-	@media (min-width: 1001px) {
-		text-align: left;
-	}
-
 	h2 {
 		font-size: 20px;
 		font-weight: normal;
 		color: #444;
 		margin: 0 0 10px;
 		padding: 10px 15px;
-	
+		
 		@media (min-width: 769px) {
 			margin: 0 0 15px;
 			padding: 0;
 		}
 	}
-}
 
-.newsletter-email {
-	display: inline-block;
-	overflow: hidden;
-}
+	.newsletter__form {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		gap: .75rem;
 
-.newsletter-email:focus-within {
-	overflow: visible;
-}
-
-.newsletter-email input[type="email"] {
-	float: left;
-	width: 180px;
-	height: 36px;
-	margin: 0 -1px 0 0;
-}
-
-.newsletter-subscribe-button {
-	float: left;
-	height: 36px;
-	border: none;
-	background-color: #4ab2f1;
-	padding: 0 15px;
-	text-align: center;
-	color: #fff;
-	text-transform: uppercase;
-}
-
-.newsletter-subscribe-button:hover,
-.newsletter-subscribe-button:focus {
-	background-color: #248ece;
-}
-
-.newsletter-email .options {
-	clear: both;
-	padding: 10px 0 0;
-}
-
-.newsletter-validation,
-.newsletter-result {
-	width: 100%;
-	overflow: hidden;
-	line-height: 28px;
-}
-
-@media (min-width: 481px) {
-	.newsletter-email input[type="text"] {
-		width: 240px;
-	}
-}
-
-@media (min-width: 1001px) {
-	.newsletter-email {
-		display: block;
 	}
 
-	.newsletter-email input[type="text"] {
-		width: 200px;
+	.newsletter__options {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		label {
+			display: flex;
+			gap: .125rem;
+		}
+	}
+	
+	button {
+		color: #fff;
+		text-transform: uppercase;
+		border: none;
+		background-color: #4ab2f1;
+		padding: .5rem;
+	
+		&:hover,
+		&:focus {
+			background-color: #248ece;
+		}
 	}
 
-	.newsletter-email .newsletter-subscribe-button {
-		min-width: 100px;
-		padding: 0 5px;
+	[data-valmsg-for="NewsletterEmail"] {
+		display: contents;
 	}
-
-	.newsletter-validation .field-validation-valid {
-		text-align: left;
+	
+	.newsletter__results {
+		margin-top: 1.25rem;
+		padding-inline: .25rem;
+		
+		&:empty {
+			display: contents;
+		}
 	}
 }
