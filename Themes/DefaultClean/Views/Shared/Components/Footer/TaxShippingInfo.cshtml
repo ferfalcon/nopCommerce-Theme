@@ -9,7 +9,7 @@
 
 @if (Model.DisplayTaxShippingInfoFooter)
 {
-	<p class="footer-tax-shipping">
+	<p>
 		@T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
 	</p>
 }

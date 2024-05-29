@@ -60,6 +60,10 @@
 	font-size: .813rem;
 	padding-block: 1.75rem;
 
+	p {
+		margin: 0;
+	}
+
 	a {
 		font-weight: bold;
 		color: var(--cl-accent-500);
