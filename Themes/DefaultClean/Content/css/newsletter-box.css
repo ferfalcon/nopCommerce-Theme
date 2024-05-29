@@ -2,7 +2,7 @@
 	background: none;
 	margin-top: 1.5rem;
 	padding-top: 1.5rem;
-	border-top: solid thin hsl(0 0% 87%);
+	border-top: solid thin var(--cl-neutral-700);
 	
 	@media (min-width: 44rem) and (max-width: 58.25rem) {
 		margin-top: 0;
@@ -11,7 +11,7 @@
 	}
 
 	h2 {
-		color: hsl(0 0% 25%);
+		color: var(--cl-neutral-200);
 		background: none;
 		padding: 0;
 	}
@@ -24,7 +24,7 @@
 		padding: 0;
 
 		input {
-			color: hsl(0 0% 34.75%);
+			color: var(--cl-neutral-400);
 		}
 
 		fieldset {
@@ -49,15 +49,15 @@
 		}
 
 		button {
-			color: hsl(0 0% 100%);
+			color: var(--cl-neutral-900);
 			text-transform: uppercase;
 			border: none;
-			background-color: hsl(203 90% 30%);
+			background-color: var(--cl-accent-600);
 			padding: .5rem;
 
 			&:hover,
 			&:focus {
-				background-color: hsl(203 70% 50%);
+				background-color: var(--cl-accent-700);
 			}
 		}
 
@@ -67,11 +67,7 @@
 	}
 
 	form + div {
-		padding-inline: 1rem;
-
-		@media (min-width: 769px) {
-			padding: 0;
-		}
+		padding: 0;
 
 		&:empty {
 			display: contents;

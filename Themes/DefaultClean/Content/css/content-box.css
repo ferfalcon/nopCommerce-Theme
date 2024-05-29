@@ -1,9 +1,9 @@
 .content-box {
 	display: grid;
 	align-content: start;
-	background: hsl(0 0% 100%);
+	background: var(--cl-neutral-900);
 	gap: .75rem;
-	
+
 	@media (min-width: 769px) {
 		gap: 1rem;
 		background: none;
@@ -12,13 +12,13 @@
 	h2 {
 		font-size: 1.25rem;
 		font-weight: normal;
-		color: white;
+		color: var(--cl-neutral-900);
 		margin: 0;
 		padding: .5rem 1rem;
-		background: hsl(203 90% 30%);
-		
+		background: var(--cl-accent-600);
+
 		@media (min-width: 769px) {
-			color: hsl(0 0% 25%);
+			color: var(--cl-neutral-200);
 			padding: 0;
 			background: none;
 		}
@@ -33,22 +33,22 @@
 		@media (min-width: 769px) {
 			padding: 0;
 		}
-		
+
 		li {
 			&::marker {
 				content: "";
 			}
-	
+
 			a {
 				color: inherit;
 				text-decoration: none;
 				display: block;
-				
+
 				&:hover,
 				&:focus {
-					color: hsl(203 70% 50%);
+					color: var(--cl-accent-700);
 				}
-	
+
 				@media (min-width: 769px) {
 					display: inline;
 				}
