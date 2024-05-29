@@ -1,56 +1,48 @@
-.social-buttons {
-	border-bottom: 1px solid #ddd;
-	margin: 0 0 30px;
-	padding: 0 0 30px;
+.content-box--social-buttons:is(.content-box) {
+	background: none;
 
 	h2 {
-		font-size: 20px;
-		font-weight: normal;
-		color: #444;
-		margin: 0 0 10px;
-		padding: 10px 15px;
-	
-		@media (min-width: 769px) {
-			margin: 0 0 15px;
-			padding: 0;
-		}
+		color: hsl(0 0% 25%);
+		background: none;
+		padding: 0;
 	}
 
 	ul {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
-		gap: 5px;
+		gap: .5rem;
+		padding: 0;
 
-		@media (min-width: 1001px) {
-			justify-content: start;
-			gap: 10px;
+		@media (min-width: 769px) {
+			gap: .75rem;
 		}
-		
-		a {
-			display: block;
-			width: 38px;
-			height: 38px;
-			text-indent: -1000vw;
-	
-			&.social-buttons__facebook {
-				background: url('../images/social-networks/logo--facebook.svg') no-repeat center / cover;
-			}
-			
-			&.social-buttons__twitter {
-				background: url('../images/social-networks/logo--x.svg') no-repeat center / cover;
-			}
-			
-			&.social-buttons__rss {
-				background: url('../images/social-networks/logo--rss.svg') no-repeat center / cover;
-			}
-			
-			&.social-buttons__youtube {
-				background: url('../images/social-networks/logo--youtube.svg') no-repeat center / cover;
-			}
-			
-			&.social-buttons__instagram {
-				background: url('../images/social-networks/logo--instagram.svg') no-repeat center / cover;
+
+		li {
+			a {
+				display: block;
+				width: 2.375rem;
+				height: 2.375rem;
+				text-indent: -1000vw;
+
+				&.facebook {
+					background: url('../images/social-networks/logo--facebook.svg') no-repeat center / cover;
+				}
+
+				&.twitter {
+					background: url('../images/social-networks/logo--x.svg') no-repeat center / cover;
+				}
+
+				&.youtube {
+					background: url('../images/social-networks/logo--youtube.svg') no-repeat center / cover;
+				}
+
+				&.instagram {
+					background: url('../images/social-networks/logo--instagram.svg') no-repeat center / cover;
+				}
+
+				&.rss {
+					background: url('../images/social-networks/logo--rss.svg') no-repeat center / cover;
+				}
 			}
 		}
 	}

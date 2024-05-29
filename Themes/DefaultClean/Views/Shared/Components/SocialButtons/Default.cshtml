@@ -7,13 +7,13 @@
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/social-buttons.css");
 }
 
-<nav class="social-buttons">
+<nav class="content-box   content-box--social-buttons">
 	<h2>@T("Footer.FollowUs")</h2>
 	<ul>
 		@if (!string.IsNullOrEmpty(Model.FacebookLink))
 		{
 			<li>
-				<a class="social-buttons__facebook" href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">
+				<a class="facebook" href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">
 					@T("Footer.FollowUs.Facebook")
 				</a>
 			</li>
@@ -21,7 +21,7 @@
 		@if (!string.IsNullOrEmpty(Model.TwitterLink))
 		{
 			<li>
-				<a class="social-buttons__twitter" href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">
+				<a class="twitter" href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">
 					@T("Footer.FollowUs.Twitter")
 				</a>
 			</li>
@@ -29,7 +29,7 @@
 		@if (!string.IsNullOrEmpty(Model.YoutubeLink))
 		{
 			<li>
-				<a class="social-buttons__youtube" href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">
+				<a class="youtube" href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">
 					@T("Footer.FollowUs.Youtube")
 				</a>
 			</li>
@@ -37,7 +37,7 @@
 		@if (!string.IsNullOrEmpty(Model.InstagramLink))
 		{
 			<li>
-				<a class="social-buttons__instagram" href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">
+				<a class="instagram" href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">
 					@T("Footer.FollowUs.Instagram")
 				</a>
 			</li>
@@ -45,7 +45,7 @@
 		@if (Model.NewsEnabled)
 		{
 			<li>
-				<a class="social-buttons__rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">
+				<a class="rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">
 					@T("Footer.FollowUs.RSS")
 				</a>
 			</li>

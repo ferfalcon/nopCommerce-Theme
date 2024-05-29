@@ -1,5 +1,6 @@
 .footer {
-	background-color: #eee;
+	color: hsl(0 0% 34.75%);
+	background-color: hsl(0 0% 93%);
 
 	display: grid;
 	align-items: center;
@@ -18,8 +19,8 @@
 .footer__top {
 	display: grid;
 	gap: 1.75rem;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	border-bottom: solid thin #ddd;
+	grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+	border-bottom: solid thin hsl(0 0% 87%);
 	padding-block: 2rem;
 }
 
@@ -28,15 +29,16 @@
 	flex-wrap: wrap;
 	align-items: baseline;
 	gap: .75rem;
-	font-size: 12px;
+	font-size: .813rem;
 	padding-block: 1.75rem;
 
 	a {
 		font-weight: bold;
-		color: #4ab2f1;
+		color: hsl(203 90% 27%);
 		
 		&:hover,
 		&:focus {
+			color: hsl(203 70% 50%);
 			text-decoration: underline;
 		}
 	}
