@@ -18,10 +18,18 @@
 
 .footer__top {
 	display: grid;
-	gap: 1.75rem;
+	gap: 3rem 1.75rem;
 	grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
 	border-bottom: solid thin hsl(0 0% 87%);
 	padding-block: 2rem;
+
+	div {
+		@media (min-width: 44rem) and (max-width: 58.25rem) {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: span 2;
+		}
+	}
 }
 
 .footer__bottom {

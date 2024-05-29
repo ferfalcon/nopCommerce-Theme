@@ -3,6 +3,12 @@
 	margin-top: 1.5rem;
 	padding-top: 1.5rem;
 	border-top: solid thin hsl(0 0% 87%);
+	
+	@media (min-width: 44rem) and (max-width: 58.25rem) {
+		margin-top: 0;
+		padding-top: 0;
+		border-top: 0;
+	}
 
 	h2 {
 		color: hsl(0 0% 25%);
