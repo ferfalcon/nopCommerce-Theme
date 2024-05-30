@@ -3,6 +3,7 @@
 @{
 	var themeName = await themeContext.GetWorkingThemeNameAsync();
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-header.css");
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/logo.css");
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/search-box.css");
 }
 
@@ -28,10 +29,7 @@
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMiddle })
 
 	<div class="header-lower">
-		<div class="header-logo">
-			@await Component.InvokeAsync(typeof(LogoViewComponent))
-		</div>
-
+		@await Component.InvokeAsync(typeof(LogoViewComponent))
 		@await Component.InvokeAsync(typeof(SearchBoxViewComponent))
 	</div>
 
