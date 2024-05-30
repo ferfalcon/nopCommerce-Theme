@@ -21,6 +21,4 @@
 	});
 }
 
-<div class="tax-display-type-selector">
-	<select id="customerTaxType" name="customerTaxType" asp-items="@taxTypes" onchange="setLocation(this.value);" aria-label="@T("Tax.Selector.Label")"></select>
-</div>
+<select id="customerTaxType" name="customerTaxType" asp-items="@taxTypes" onchange="setLocation(this.value);" aria-label="@T("Tax.Selector.Label")"></select>
