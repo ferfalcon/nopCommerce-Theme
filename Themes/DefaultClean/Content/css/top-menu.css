@@ -1,0 +1,192 @@
+.menu-toggle {
+	color: var(--cl-neutral-900);
+	background: url('../images/menu-icon.png') right center no-repeat var(--cl-accent-600);
+	padding: 1rem;
+	font-size: 1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: 0;
+
+	@media (min-width: 1001px) {
+		display: none;
+	}
+}
+
+.header-menu {
+	position: relative;
+	z-index: 1;
+
+	@media (min-width: 1001px) {
+		z-index: 5;
+		border-block: solid thin var(--cl-neutral-700);
+		padding-block: 1.5rem;
+	}
+}
+
+.header-menu__desktop {
+	@media (max-width: 1000px) {
+		display: none;
+	}
+
+	display: flex;
+	justify-content: center;
+
+	& > li {
+		border-left: solid thin var(--cl-neutral-700);
+		padding-inline: 1rem;
+
+		@media (min-width: 1367px) {
+			padding-inline: 1.25rem;
+		}
+
+		&:first-child {
+			border-left: none;
+		}
+		
+		& > span,
+		& > a {
+			font-size: 1rem;
+			color: var(--cl-neutral-400);
+			display: block;
+			padding: .25rem .75rem;
+			cursor: pointer;
+
+			@media (min-width: 1367px) {
+				font-size: 1.125rem;
+			}
+		
+			&:hover,
+			&:focus {
+				color: var(--cl-accent-700);
+			}
+		}
+	}
+
+	.sublist {
+		display: none;
+		position: absolute;
+		width: 200px;
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+		background: var(--cl-neutral-900);
+		padding: 10px 0;
+	
+		li {
+			position: relative;
+
+			&:hover > a,
+			&:focus > a {
+				background: var(--cl-neutral-800);
+			}
+
+			a {
+				display: block;
+				position: relative;
+				text-align: initial;
+				padding: 10px 20px 10px 30px;
+				font-size: 14px;
+				color: var(--cl-neutral-200);
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 17px;
+					left: 15px;
+					width: 5px;
+					height: 5px;
+					background: var(--cl-neutral-700);
+				}		
+			}
+		}
+	}
+
+	li:hover > .sublist,
+	li:focus > .sublist,
+	li:focus-within > .sublist {
+		display: block;
+	}
+
+	.sublist .sublist {
+		top: -10px;
+		left: 100% !important;
+	}
+}
+
+.header-menu__mobile {
+	@media (max-width: 1000px) {
+		display: none;
+	}
+	
+	@media (min-width: 1001px) {
+		display: none !important;
+	}
+	
+	& > li {
+		position: relative;
+		margin: 1px 0;
+		background: var(--cl-neutral-800);
+	}
+
+	& > li > a {
+		display: block;
+		min-height: 55px;
+		padding: 18px;
+		font-size: 15px;
+		color: var(--cl-neutral-400);
+	}
+
+	& > li > a:focus {
+		position: relative;
+		z-index: 1;
+	}
+
+	.sublist {
+		display: none;
+		background: var(--cl-neutral-900);
+		padding: 5px 0;
+		
+		li {
+			position: relative;
+			margin: 1px 0;
+		
+			a {
+				display: block;
+				padding: 15px 18px;
+				font-size: 15px;
+			}
+		}
+	}
+}
+
+.sublist-toggle {
+	@media (max-width: 1000px) {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 55px;
+		height: 55px;
+		border-left: 1px solid thin var(--cl-neutral-900);
+		background: url('../images/toggle-black.png') center no-repeat;
+		padding: 15px;
+		cursor: pointer;
+	}
+
+	@media (min-width: 1001px) {
+		display: none;
+	}
+}
+
+.sublist {
+	@media (max-width: 1000px) {
+		.sublist-toggle {
+			height: 49px;
+		}
+	
+		.sublist li {
+			background: var(--cl-neutral-800);
+		}
+	
+		.sublist .sublist li {
+			background: var(--cl-neutral-900);
+		}
+	}
+}
