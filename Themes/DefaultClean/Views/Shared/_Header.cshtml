@@ -1,4 +1,11 @@
-﻿<div class="header">
+﻿@inject IThemeContext themeContext
+
+@{
+	var themeName = await themeContext.GetWorkingThemeNameAsync();
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-header.css");
+}
+
+<div class="header">
 	<a class="skip" href="#main">@T("Header.SkipNavigation.Text")</a>
 	
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
