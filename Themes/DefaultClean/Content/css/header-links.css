@@ -1,12 +1,18 @@
 .header-links-wrapper {
 	position: relative;
+	margin: auto;
+	
+	@media (min-width: 1001px) {
+		margin: initial;
+	}
 }
 
 .header-links {
 	ul {
 		display: flex;
 		flex-wrap: wrap;
-		gap: .75rem;
+		justify-content: center;
+		gap: .25rem .75rem;
 	}
 
 	a {
@@ -29,13 +35,13 @@
 		&:is(.ico-cart) {
 			background: var(--cl-neutral-800);
 			gap: .5rem;
-			
+
 			&::before {
 				aspect-ratio: 1;
 				background: url('../images/icon--shopping-bag.svg') center / contain no-repeat ;
 			}
 		}
-		
+
 		&:hover,
 		&:focus {
 			color: var(--cl-accent-700);

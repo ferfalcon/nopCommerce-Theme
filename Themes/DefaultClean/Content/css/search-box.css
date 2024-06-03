@@ -3,8 +3,10 @@
 
 	form {
 		display: flex;
+		justify-content: center;
 		flex-wrap: wrap;
 		align-items: stretch;
+		gap: .25rem;
 	}
 
 	input {
