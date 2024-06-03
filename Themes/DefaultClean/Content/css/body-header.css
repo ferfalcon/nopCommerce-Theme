@@ -122,14 +122,24 @@
 		font-size: .75rem;
 		text-transform: uppercase;
 		display: block;
-		padding: .75rem;
+		padding: .5rem .75rem;
 
 		@media (min-width: 1001px) {
 			text-transform: none;
 		}
 
 		&:is(.ico-cart) {
-			background: url('../images/shopping-bag.png') left center no-repeat #f6f6f6;
+			background: #f6f6f6;
+			display: flex;
+			gap: .5rem;
+			align-items: center;
+
+			&::before {
+				content: '';
+				width: 1rem;
+				aspect-ratio: 1;
+				background: url('../images/icon--shopping-bag.svg') center / contain no-repeat ;
+			}
 		}
 		
 		&:hover,

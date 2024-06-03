@@ -11,30 +11,26 @@
 @functions {
 	async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
 	{
+		var subCategories = lineModel.ResponsiveMobileMenu ? lineModel.Category.SubCategories : lineModel.Category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
 		<li>
 			<a href="@(Url.RouteUrl<Category>(new { SeName = lineModel.Category.SeName }))">
 				@lineModel.Category.Name
-
 				@if (lineModel.Category.NumberOfProducts.HasValue)
 				{
 					<text> </text>
 					@T("Categories.TotalProducts", lineModel.Category.NumberOfProducts.Value)
 				}
 			</a>
-
-			@{
-				var subCategories = lineModel.ResponsiveMobileMenu ? lineModel.Category.SubCategories : lineModel.Category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
-				if (subCategories.Count > 0)
-				{
-					<button type="button" class="header-menu__sub-menu-toggle" data-sub-menu-toggle></button>
-					<ul class="header-menu__sub-menu" data-sub-menu>
-						@foreach (var subCategory in subCategories)
-						{
-							var categoryLineModel = new TopMenuModel.CategoryLineModel { Category = subCategory, Level = lineModel.Level + 1, ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu };
-							await CategoryLine(categoryLineModel);
-						}
-					</ul>
-				}
+			@if (subCategories.Count > 0)
+			{
+				<button type="button" class="header-menu__sub-menu-toggle" data-sub-menu-toggle></button>
+				<ul class="header-menu__sub-menu" data-sub-menu>
+					@foreach (var subCategory in subCategories)
+					{
+						var categoryLineModel = new TopMenuModel.CategoryLineModel { Category = subCategory, Level = lineModel.Level + 1, ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu };
+						await CategoryLine(categoryLineModel);
+					}
+				</ul>
 			}
 		</li>
 	}
@@ -143,13 +139,10 @@
 			});
 		</script>
 	}
-
 	<script asp-location="Footer">
 		document.addEventListener('DOMContentLoaded', function () {
-
 			const topMenu = document.getElementById('top-menu');
 			const subMenus = document.querySelectorAll('[data-sub-menu]');
-
 			function trackWindowSize() {
 				const windowWidth = window.innerWidth;
 				if (windowWidth < 1001) {
@@ -162,11 +155,9 @@
 					removeSubMenuStyles();
 				}
 			};
-
 			function removeSubMenuStyles() {
 				subMenus.forEach(subMenu => subMenu.style = null );
 			};
-
 			trackWindowSize();
 			window.addEventListener('resize', trackWindowSize);
 		});
