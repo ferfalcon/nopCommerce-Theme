@@ -1,5 +1,5 @@
 .flyout-shopping-cart {
-	/* display: none; */
+	display: none;
 	position: absolute;
 	top: 100%;
 	right: 0;
@@ -51,7 +51,6 @@
 			.flyout-shopping-cart-product__name {
 				font-size: 1rem;
 				color: var(--cl-accent-600);
-				margin: 0 0 .125rem;
 		
 				&:hover,
 				&:focus {

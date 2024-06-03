@@ -37,7 +37,7 @@
 	}
 }
 
-.header-upper {
+.header__top {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -51,7 +51,7 @@
 	border-bottom: solid thin var(--cl-neutral-700);
 }
 
-.header-lower {
+.header__bottom {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;

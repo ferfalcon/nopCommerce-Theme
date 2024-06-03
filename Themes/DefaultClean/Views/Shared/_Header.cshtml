@@ -15,7 +15,7 @@
 	
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
 
-	<div class="header-upper">
+	<div class="header__top">
 		<div class="header__selectors">
 			@await Component.InvokeAsync(typeof(TaxTypeSelectorViewComponent))
 			@await Component.InvokeAsync(typeof(CurrencySelectorViewComponent))
@@ -31,7 +31,7 @@
 
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMiddle })
 
-	<div class="header-lower">
+	<div class="header__bottom">
 		@await Component.InvokeAsync(typeof(LogoViewComponent))
 		@await Component.InvokeAsync(typeof(SearchBoxViewComponent))
 	</div>
