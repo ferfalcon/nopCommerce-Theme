@@ -1,0 +1,165 @@
+﻿@model TopMenuModel
+
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Topics
+
+@{
+	var rootCategoriesResponsive = Model.Categories.ToList();
+	var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
+}
+
+@functions {
+	async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
+	{
+		var subCategories = lineModel.ResponsiveMobileMenu ? lineModel.Category.SubCategories : lineModel.Category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+		<li>
+			<a href="@(Url.RouteUrl<Category>(new { SeName = lineModel.Category.SeName }))">
+				@lineModel.Category.Name
+				@if (lineModel.Category.NumberOfProducts.HasValue)
+				{
+					<text> </text>
+					@T("Categories.TotalProducts", lineModel.Category.NumberOfProducts.Value)
+				}
+			</a>
+			@if (subCategories.Count > 0)
+			{
+				<button type="button" class="header-menu__sub-menu-toggle" data-sub-menu-toggle></button>
+				<ul class="header-menu__sub-menu" data-sub-menu>
+					@foreach (var subCategory in subCategories)
+					{
+						var categoryLineModel = new TopMenuModel.CategoryLineModel { Category = subCategory, Level = lineModel.Level + 1, ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu };
+						await CategoryLine(categoryLineModel);
+					}
+				</ul>
+			}
+		</li>
+	}
+}
+
+<nav class="header-menu">
+	<button class="header-menu__menu-toggle" id="mobile-menu-toggle" type="button" tabindex="0" aria-controls="top-menu">
+		@responsiveMenuTitle
+	</button>
+
+	<ul id="top-menu" class="header-menu__items-list   header-menu__items-list--mobile">
+		@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
+		@if (Model.DisplayHomepageMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a>
+			</li>
+		}
+		@if (!Model.UseAjaxMenu)
+		{
+			var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+			@foreach (var category in rootCategories)
+			{
+				var categoryLineModel = new TopMenuModel.CategoryLineModel { Category = category };
+				await CategoryLine(categoryLineModel);
+			}
+		}
+		@foreach (var topic in Model.Topics)
+		{
+			<li>
+				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+			</li>
+		}
+		@if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a>
+			</li>
+		}
+		@if (Model.DisplayProductSearchMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a>
+			</li>
+		}
+		@if (Model.DisplayCustomerInfoMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a>
+			</li>
+		}
+		@if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
+			</li>
+		}
+		@if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a>
+			</li>
+		}
+		@if (Model.DisplayContactUsMenuItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a>
+			</li>
+		}
+		@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuAfter, additionalData = Model })
+	</ul>
+
+	@if (Model.UseAjaxMenu)
+	{
+		<script asp-location="Footer">
+			$(function () {
+				$('#mobile-menu-toggle').on('click', function () {
+					$(this).siblings('#top-menu').slideToggle('slow');
+					$('#mobile-menu-toggle').on('keydown', function (event) {
+						if (event.keyCode === 13 || event.keyCode === 32) {
+							event.preventDefault();
+							$(this).siblings('#top-menu').slideToggle('slow');
+						}
+					});
+					var localized_data = { AjaxFailure: "@T("MainMenu.AjaxFailure")" };
+					mainMenu.init(
+						'@Url.RouteUrl("GetCatalogRoot")', 
+						'@Url.RouteUrl("GetCatalogSubCategories")', 
+						'#top-menu', 
+						localized_data
+					);
+				});
+		</script>
+		<script src="~/js/public.menu.js" asp-location="Footer"></script>
+	}
+	else
+	{
+		<script asp-location="Footer">
+			$(function () {
+				$('#mobile-menu-toggle').on('click', function () {
+					$(this).siblings('#top-menu').slideToggle('slow');
+				});
+				$('#top-menu [data-sub-menu-toggle]').on('click', function () {
+					$(this).siblings('[data-sub-menu]').slideToggle('slow');
+				});
+			});
+		</script>
+	}
+	<script asp-location="Footer">
+		document.addEventListener('DOMContentLoaded', function () {
+			const topMenu = document.getElementById('top-menu');
+			const subMenus = document.querySelectorAll('[data-sub-menu]');
+			function trackWindowSize() {
+				const windowWidth = window.innerWidth;
+				if (windowWidth < 1001) {
+					topMenu.classList.add('header-menu__items-list--mobile');
+					topMenu.classList.remove('header-menu__items-list--desktop');
+				} else {
+					topMenu.classList.add('header-menu__items-list--desktop');
+					topMenu.classList.remove('header-menu__items-list--mobile');
+					topMenu.style = null;
+					removeSubMenuStyles();
+				}
+			};
+			function removeSubMenuStyles() {
+				subMenus.forEach(subMenu => subMenu.style = null );
+			};
+			trackWindowSize();
+			window.addEventListener('resize', trackWindowSize);
+		});
+	</script>
+</nav>

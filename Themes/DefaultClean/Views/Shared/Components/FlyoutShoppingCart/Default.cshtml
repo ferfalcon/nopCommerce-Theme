@@ -1,0 +1,70 @@
+﻿@model MiniShoppingCartModel
+
+@using Nop.Core.Domain.Catalog
+
+@{
+	var checkoutUrl = "";
+	if (Model.AnonymousCheckoutAllowed && Model.CurrentCustomerIsGuest)
+	{
+		checkoutUrl = Url.RouteUrl("LoginCheckoutAsGuest", new { returnUrl = Url.RouteUrl("ShoppingCart") });
+	}
+	else
+	{
+		checkoutUrl = Url.RouteUrl("Checkout");
+	}
+}
+
+<div id="flyout-cart" class="flyout-shopping-cart">
+	<p class="flyout-shopping-cart__item-count">
+		@if (Model.TotalProducts == 0)
+		{
+			@T("ShoppingCart.Mini.NoItems")
+		}
+		else
+		{
+			@Html.Raw(string.Format(T("ShoppingCart.Mini.ItemsText").Text, $"<a href=\"{Url.RouteUrl("ShoppingCart")}\">{string.Format(T("ShoppingCart.Mini.Items").Text, Model.TotalProducts)}</a>"))
+		}
+	</p>
+	@if (Model.TotalProducts > 0)
+	{
+		<ul class="flyout-shopping-cart__products">
+			@foreach (var item in Model.Items)
+			{
+				<li class="flyout-shopping-cart-product">
+					@if (Model.ShowProductImages)
+					{
+						<a class="flyout-shopping-cart-product__image" href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))" title="@item.Picture.Title">
+							<img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl"/>
+						</a>
+					}
+					<a class="flyout-shopping-cart-product__name" href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))">@item.ProductName</a>
+					@if (!string.IsNullOrEmpty(item.AttributeInfo))
+					{
+						<div class="flyout-shopping-cart-product__attributes">
+							@Html.Raw(item.AttributeInfo)
+						</div>
+					}
+					<p class="flyout-shopping-cart-product__price">
+						@T("ShoppingCart.Mini.UnitPrice"): <b>@item.UnitPrice</b>
+					</p>
+					<p class="flyout-shopping-cart-product__quantity">
+						@T("ShoppingCart.Mini.Quantity"): <b>@item.Quantity</b>
+					</p>
+				</li>
+			}
+		</ul>
+		<p class="flyout-shopping-cart__total">
+			@T("ShoppingCart.Totals.SubTotal"): <b>@Model.SubTotal</b>
+		</p>
+		<div class="flyout-shopping-cart__buttons">
+			@if (Model.DisplayShoppingCartButton)
+			{
+				<a href='@(Url.RouteUrl("ShoppingCart"))'>@T("ShoppingCart.Mini.ViewCart")</a>
+			}
+			@if (Model.DisplayCheckoutButton)
+			{
+				<a href="@checkoutUrl">@T("Checkout.Button")</a>
+			}
+		</div>
+	}
+</div>

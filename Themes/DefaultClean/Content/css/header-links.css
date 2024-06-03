@@ -1,0 +1,50 @@
+.header-links-wrapper {
+	position: relative;
+	margin: auto;
+	
+	@media (min-width: 1001px) {
+		margin: initial;
+	}
+}
+
+.header-links {
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: .25rem .75rem;
+	}
+
+	a {
+		color: var(--cl-neutral-400);
+		font-size: .875rem;
+		text-transform: uppercase;
+		display: flex;
+		align-items: center;
+		padding: .625rem .75rem;
+
+		&::before {
+			content: '';
+			height: 1rem;
+		}
+
+		@media (min-width: 1001px) {
+			text-transform: none;
+		}
+
+		&:is(.ico-cart) {
+			background: var(--cl-neutral-800);
+			gap: .5rem;
+
+			&::before {
+				aspect-ratio: 1;
+				background: url('../images/icon--shopping-bag.svg') center / contain no-repeat ;
+			}
+		}
+
+		&:hover,
+		&:focus {
+			color: var(--cl-accent-700);
+		}
+	}
+}

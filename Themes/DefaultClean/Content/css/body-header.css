@@ -1,0 +1,133 @@
+:root {
+	.header {
+		--cl-neutral-200: hsl(0 0% 25%);
+		--cl-neutral-400: hsl(0 0% 34.75%);
+		--cl-neutral-700: hsl(0 0% 87%);
+		--cl-neutral-800: hsl(0 0% 93%);
+		--cl-neutral-900: hsl(0 0% 100%);
+
+		--cl-accent-500: hsl(203 90% 26.75%);
+		--cl-accent-600: hsl(203 90% 30%);
+		--cl-accent-700: hsl(203 70% 50%);
+
+		--content-column: 61.25rem;
+	
+		@media (min-width: 85.438rem) {
+			--content-column: 75rem;
+		}
+	}
+}
+
+.header {
+	position: relative;
+	z-index: 10;
+	text-align: center;
+
+	display: grid;
+	align-items: center;
+	grid-template-columns: 
+		minmax(0, auto) 
+		minmax(0, 1.5rem) 
+		minmax(min-content, max(var(--content-column)))
+		minmax(0, 1.5rem) 
+		minmax(0, auto);
+	margin-bottom: .75rem;
+
+	& > * {
+		grid-column: 3;
+	}
+}
+
+.header__top {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .5rem;
+	
+	position: relative;
+	z-index: 100;
+	padding: .5rem 0;
+
+	border-bottom: solid thin var(--cl-neutral-700);
+
+	@media (min-width: 1001px) {
+		flex-direction: initial;
+	}
+}
+
+.header__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	
+	position: relative;
+	z-index: 90;
+	padding: 1rem 0;
+	
+	@media (min-width: 1001px) {
+		justify-content: space-between;
+		padding: 2rem 0;
+	}
+}
+
+.header__selectors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	gap: .5rem;
+	width: 100%;
+	padding-bottom: .5rem;
+	border-bottom: solid thin var(--cl-neutral-700);
+	
+	@media (min-width: 1001px) {
+		justify-content: initial;
+		padding-bottom: initial;
+		border-bottom: initial;
+		width: initial;
+	}
+
+	select  {
+		color: var(--cl-neutral-400);
+	}
+}
+
+.language-list {
+	max-width: 100%;
+	font-size: 0;
+
+	@media (min-width: 1001px) {
+		text-align: left;
+	}
+
+	li {
+		display: inline-block;
+		margin: 0 1px;
+		vertical-align: middle;
+	}
+	
+	a {
+		display: block;
+		position: relative;
+		width: 24px;
+		height: 32px;
+		line-height: 0;
+	}
+	
+	img {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+	}
+}
+
+.slider-wrapper.theme-custom {
+	margin: 0 0 60px;
+}
