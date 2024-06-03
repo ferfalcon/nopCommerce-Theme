@@ -6,6 +6,7 @@
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/logo.css");
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/search-box.css");
 	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/top-menu.css");
+	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/header-links.css");
 }
 
 <header class="header">
@@ -34,9 +35,9 @@
 		@await Component.InvokeAsync(typeof(SearchBoxViewComponent))
 	</div>
 
-	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
+	@await Component.InvokeAsync(typeof(TopMenuViewComponent))
 
-	@await Component.InvokeAsync(typeof(TopMenuViewComponent))	
+	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
 </header>
 
 <script asp-location="Footer">

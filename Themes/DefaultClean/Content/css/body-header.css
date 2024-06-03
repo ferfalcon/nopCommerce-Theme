@@ -106,49 +106,6 @@
 	}
 }
 
-.header-links-wrapper {
-	position: relative;
-}
-
-.header-links {
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: .75rem;
-	}
-
-	a {
-		color: var(--cl-neutral-400);
-		font-size: .75rem;
-		text-transform: uppercase;
-		display: block;
-		padding: .5rem .75rem;
-
-		@media (min-width: 1001px) {
-			text-transform: none;
-		}
-
-		&:is(.ico-cart) {
-			background: #f6f6f6;
-			display: flex;
-			gap: .5rem;
-			align-items: center;
-
-			&::before {
-				content: '';
-				width: 1rem;
-				aspect-ratio: 1;
-				background: url('../images/icon--shopping-bag.svg') center / contain no-repeat ;
-			}
-		}
-		
-		&:hover,
-		&:focus {
-			color: var(--cl-accent-700);
-		}
-	}
-}
-
 .flyout-cart {
 	display: none;
 
