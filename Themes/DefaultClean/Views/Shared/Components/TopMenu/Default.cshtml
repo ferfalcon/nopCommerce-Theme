@@ -3,6 +3,11 @@
 @using Nop.Core.Domain.Catalog
 @using Nop.Core.Domain.Topics
 
+@{
+	var rootCategoriesResponsive = Model.Categories.ToList();
+	var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
+}
+
 @functions {
 	async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
 	{
@@ -36,16 +41,11 @@
 }
 
 <nav class="header-menu">
-	@{
-		var rootCategoriesResponsive = Model.Categories.ToList();
-		var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
+	<button class="header-menu__menu-toggle" id="mobile-menu-toggle" type="button" tabindex="0" aria-controls="top-menu">
+		@responsiveMenuTitle
+	</button>
 
-		<button id="mobile-menu-toggle" class="header-menu__menu-toggle" type="button" tabindex="0" aria-controls="top-menu">
-			@responsiveMenuTitle
-		</button>
-	}
-
-	<ul id="top-menu" class="header-menu__mobile">
+	<ul id="top-menu" class="header-menu__items-list   header-menu__items-list--mobile">
 		@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
 		@if (Model.DisplayHomepageMenuItem)
 		{
@@ -153,11 +153,11 @@
 			function trackWindowSize() {
 				const windowWidth = window.innerWidth;
 				if (windowWidth < 1001) {
-					topMenu.classList.add('header-menu__mobile');
-					topMenu.classList.remove('header-menu__desktop');
+					topMenu.classList.add('header-menu__items-list--mobile');
+					topMenu.classList.remove('header-menu__items-list--desktop');
 				} else {
-					topMenu.classList.remove('header-menu__mobile');
-					topMenu.classList.add('header-menu__desktop');
+					topMenu.classList.add('header-menu__items-list--desktop');
+					topMenu.classList.remove('header-menu__items-list--mobile');
 					topMenu.style = null;
 					removeSubMenuStyles();
 				}
