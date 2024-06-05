@@ -12,7 +12,6 @@
 
 <header class="header">
 	<a class="skip" href="#main">@T("Header.SkipNavigation.Text")</a>
-	
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
 
 	<div class="header__top">
@@ -23,11 +22,7 @@
 			@await Component.InvokeAsync(typeof(StoreThemeSelectorViewComponent))
 			@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
 		</div>
-
-		<div class="header-links-wrapper">
-			@await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
-			@await Component.InvokeAsync(typeof(FlyoutShoppingCartViewComponent))
-		</div>
+		@await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
 	</div>
 
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMiddle })
@@ -38,11 +33,5 @@
 	</div>
 
 	@await Component.InvokeAsync(typeof(TopMenuViewComponent))
-
 	@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
 </header>
-
-<script asp-location="Footer">
-	var localized_data = { AjaxCartFailure: "@T("AjaxCart.Failure")" };
-	AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
-</script>
