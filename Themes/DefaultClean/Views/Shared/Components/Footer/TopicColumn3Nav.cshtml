@@ -3,58 +3,33 @@
 @using Nop.Core.Domain.Topics
 
 @{
-	var displayCustomerInfoLink = Model.DisplayCustomerInfoFooterItem;
-	var displayCustomerOrdersLink = Model.DisplayCustomerOrdersFooterItem;
-	var displayCustomerAddressesLink = Model.DisplayCustomerAddressesFooterItem;
-	var displayShoppingCartLink = Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem;
-	var displayWishListLink = Model.WishlistEnabled && Model.DisplayWishlistFooterItem;
-	var displayApplyForVendorLink = Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem;
+	var footerLinks = new List<(bool Condition, string RouteName, string TranslationKey)> {
+				(Model.DisplayCustomerInfoFooterItem, "CustomerInfo", "Account.MyAccount"),
+				(Model.DisplayCustomerOrdersFooterItem, "CustomerOrders", "Account.CustomerOrders"),
+				(Model.DisplayCustomerAddressesFooterItem, "CustomerAddresses", "Account.CustomerAddresses"),
+				(Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem, "ShoppingCart", "ShoppingCart"),
+				(Model.WishlistEnabled && Model.DisplayWishlistFooterItem, "Wishlist", "Wishlist"),
+				(Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem, "ApplyVendorAccount", "Vendors.ApplyAccount"),
+	};
+
+	var topics = Model.Topics?.Where(x => x.IncludeInFooterColumn3).ToList() ?? new List<FooterModel.FooterTopicModel>();
 }
 
-@if (Model.Topics.Count()>0 || displayCustomerInfoLink || displayCustomerOrdersLink || displayCustomerAddressesLink || displayShoppingCartLink || displayWishListLink || displayApplyForVendorLink) {
+@if (topics.Any() || footerLinks.Any(link => link.Condition))
+{
 	<nav class="content-box">
 		<h2>@T("Footer.MyAccount")</h2>
 		<ul>
-			@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+			@foreach (var topic in topics)
 			{
 				<li>
 					<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
 				</li>
 			}
-			@if (displayCustomerInfoLink)
+			@foreach (var link in footerLinks.Where(link => link.Condition))
 			{
 				<li>
-					<a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a>
-				</li>
-			}
-			@if (displayCustomerOrdersLink)
-			{
-				<li>
-					<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
-				</li>
-			}
-			@if (displayCustomerAddressesLink)
-			{
-				<li>
-					<a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a>
-				</li>
-			}
-			@if (displayShoppingCartLink)
-			{
-				<li>
-					<a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
-				</li>
-			}
-			@if (displayWishListLink)
-			{
-				<li>
-					<a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a>
-				</li>
-			}
-			@if (displayApplyForVendorLink)
-			{
-				<li>
-					<a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a>
+					<a href="@Url.RouteUrl(link.RouteName)">@T(link.TranslationKey)</a>
 				</li>
 			}
 		</ul>

@@ -2,26 +2,30 @@
 
 @using Nop.Core.Domain.Topics
 
-@if (Model.Topics.Count()>0 || Model.DisplaySitemapFooterItem || Model.DisplayContactUsFooterItem) {
+@{
+	var footerLinks = new List<(bool Condition, string RouteName, string TranslationKey)> {
+				(Model.SitemapEnabled && Model.DisplaySitemapFooterItem, "Sitemap", "Sitemap"),
+				(Model.DisplayContactUsFooterItem, "ContactUs", "ContactUs")
+	};
+
+	var topics = Model.Topics?.Where(x => x.IncludeInFooterColumn1).ToList() ?? new List<FooterModel.FooterTopicModel>();
+}
+
+@if (topics.Any() || footerLinks.Any(link => link.Condition))
+{
 	<nav class="content-box">
-		<h2>@T("Footer.Information") </h2>
+		<h2>@T("Footer.Information")</h2>
 		<ul>
-			@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+			@foreach (var topic in topics)
 			{
 				<li>
 					<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
 				</li>
 			}
-			@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
+			@foreach (var link in footerLinks.Where(link => link.Condition))
 			{
 				<li>
-					<a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a>
-				</li>
-			}
-			@if (Model.DisplayContactUsFooterItem)
-			{
-				<li>
-					<a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a>
+					<a href="@Url.RouteUrl(link.RouteName)">@T(link.TranslationKey)</a>
 				</li>
 			}
 		</ul>
