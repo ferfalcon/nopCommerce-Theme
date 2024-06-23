@@ -2,50 +2,61 @@
 
 @using Nop.Core.Domain.Topics
 
-<nav class="content-box">
-	<h2>@T("Footer.MyAccount")</h2>
-	<ul>
-		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-		{
-			<li>
-				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
-			</li>
-		}
-		@if (Model.DisplayCustomerInfoFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a>
-			</li>
-		}
-		@if (Model.DisplayCustomerOrdersFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
-			</li>
-		}
-		@if (Model.DisplayCustomerAddressesFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a>
-			</li>
-		}
-		@if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
-			</li>
-		}
-		@if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a>
-			</li>
-		}
-		@if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a>
-			</li>
-		}
-	</ul>
-</nav>
+@{
+	var displayCustomerInfoLink = Model.DisplayCustomerInfoFooterItem;
+	var displayCustomerOrdersLink = Model.DisplayCustomerOrdersFooterItem;
+	var displayCustomerAddressesLink = Model.DisplayCustomerAddressesFooterItem;
+	var displayShoppingCartLink = Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem;
+	var displayWishListLink = Model.WishlistEnabled && Model.DisplayWishlistFooterItem;
+	var displayApplyForVendorLink = Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem;
+}
+
+@if (Model.Topics.Count()>0 || displayCustomerInfoLink || displayCustomerOrdersLink || displayCustomerAddressesLink || displayShoppingCartLink || displayWishListLink || displayApplyForVendorLink) {
+	<nav class="content-box">
+		<h2>@T("Footer.MyAccount")</h2>
+		<ul>
+			@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+			{
+				<li>
+					<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+				</li>
+			}
+			@if (displayCustomerInfoLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a>
+				</li>
+			}
+			@if (displayCustomerOrdersLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
+				</li>
+			}
+			@if (displayCustomerAddressesLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a>
+				</li>
+			}
+			@if (displayShoppingCartLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
+				</li>
+			}
+			@if (displayWishListLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a>
+				</li>
+			}
+			@if (displayApplyForVendorLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a>
+				</li>
+			}
+		</ul>
+	</nav>
+}

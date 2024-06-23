@@ -2,62 +2,75 @@
 
 @using Nop.Core.Domain.Topics
 
-<nav class="content-box">
-	<h2>@T("Footer.CustomerService")</h2>
-	<ul>
-		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
-		{
-			<li>
-				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
-			</li>
-		}
-		@if (Model.SearchEnabled && Model.DisplayProductSearchFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a>
-			</li>
-		}
-		@if (Model.NewsEnabled && Model.DisplayNewsFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("NewsArchive")">@T("News")</a>
-			</li>
-		}
-		@if (Model.BlogEnabled && Model.DisplayBlogFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
-			</li>
-		}
-		@if (Model.ForumEnabled && Model.DisplayForumsFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a>
-			</li>
-		}
-		@if (Model.RecentlyViewedProductsEnabled && Model.DisplayRecentlyViewedProductsFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a>
-			</li>
-		}
-		@if (Model.CompareProductsEnabled && Model.DisplayCompareProductsFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a>
-			</li>
-		}
-		@if (Model.NewProductsEnabled && Model.DisplayNewProductsFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a>
-			</li>
-		}
-		@if (Model.AllowCustomersToCheckGiftCardBalance)
-		{
-			<li>
-				<a href="@Url.RouteUrl("CheckGiftCardBalance")">@T("CheckGiftCardBalance")</a>
-			</li>
-		}
-	</ul>
-</nav>
+@{
+	var displaySearchLink = Model.SearchEnabled && Model.DisplayProductSearchFooterItem;
+	var displayNewsLink = Model.NewsEnabled && Model.DisplayNewsFooterItem;
+	var displayBlogLink = Model.BlogEnabled && Model.DisplayBlogFooterItem;
+	var displayForumLink = Model.ForumEnabled && Model.DisplayForumsFooterItem;
+	var displayRecentlyViewedLink = Model.RecentlyViewedProductsEnabled && Model.DisplayRecentlyViewedProductsFooterItem;
+	var displayCompareLink = Model.CompareProductsEnabled && Model.DisplayCompareProductsFooterItem;
+	var displayNewProductsLink = Model.NewProductsEnabled && Model.DisplayNewProductsFooterItem;
+	var displayGiftCardBalanceLink = Model.AllowCustomersToCheckGiftCardBalance;
+}
+
+@if (Model.Topics.Count()>0 || displaySearchLink || displayNewsLink || displayBlogLink || displayForumLink || displayRecentlyViewedLink || displayCompareLink || displayNewProductsLink || displayNewProductsLink || displayGiftCardBalanceLink) {
+	<nav class="content-box">
+		<h2>@T("Footer.CustomerService")</h2>
+		<ul>
+			@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
+			{
+				<li>
+					<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+				</li>
+			}
+			@if (displaySearchLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a>
+				</li>
+			}
+			@if (displayNewsLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("NewsArchive")">@T("News")</a>
+				</li>
+			}
+			@if (displayBlogLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
+				</li>
+			}
+			@if (displayForumLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a>
+				</li>
+			}
+			@if (displayRecentlyViewedLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a>
+				</li>
+			}
+			@if (displayCompareLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a>
+				</li>
+			}
+			@if (displayNewProductsLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a>
+				</li>
+			}
+			@if (displayGiftCardBalanceLink)
+			{
+				<li>
+					<a href="@Url.RouteUrl("CheckGiftCardBalance")">@T("CheckGiftCardBalance")</a>
+				</li>
+			}
+		</ul>
+	</nav>
+}
