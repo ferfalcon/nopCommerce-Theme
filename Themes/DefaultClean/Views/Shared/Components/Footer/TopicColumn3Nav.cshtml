@@ -5,6 +5,12 @@
 <nav class="content-box">
 	<h2>@T("Footer.MyAccount")</h2>
 	<ul>
+		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+		{
+			<li>
+				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+			</li>
+		}
 		@if (Model.DisplayCustomerInfoFooterItem)
 		{
 			<li>
@@ -39,12 +45,6 @@
 		{
 			<li>
 				<a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a>
-			</li>
-		}
-		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-		{
-			<li>
-				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
 			</li>
 		}
 	</ul>

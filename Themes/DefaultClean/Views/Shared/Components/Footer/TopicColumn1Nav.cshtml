@@ -5,16 +5,16 @@
 <nav class="content-box">
 	<h2>@T("Footer.Information")</h2>
 	<ul>
-		@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
-		{
-			<li>
-				<a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a>
-			</li>
-		}
 		@foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
 		{
 			<li>
 				<a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+			</li>
+		}
+		@if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
+		{
+			<li>
+				<a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a>
 			</li>
 		}
 		@if (Model.DisplayContactUsFooterItem)
