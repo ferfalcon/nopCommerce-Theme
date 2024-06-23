@@ -1,54 +1,46 @@
 ﻿@model SocialModel
 
-@inject IThemeContext themeContext
-
 @{
-	var themeName = await themeContext.GetWorkingThemeNameAsync();
-	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/social-buttons.css");
+	var hasFacebookLink = !string.IsNullOrEmpty(Model.FacebookLink);
+	var hasTwitterLink = !string.IsNullOrEmpty(Model.TwitterLink);
+	var hasYoutubeLink = !string.IsNullOrEmpty(Model.YoutubeLink);
+	var hasInstagramLink = !string.IsNullOrEmpty(Model.InstagramLink);
 }
 
-<nav class="content-box   content-box--social-buttons">
-	<h2>@T("Footer.FollowUs")</h2>
-	<ul>
-		@if (!string.IsNullOrEmpty(Model.FacebookLink))
-		{
-			<li>
-				<a class="facebook" href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">
-					@T("Footer.FollowUs.Facebook")
-				</a>
-			</li>
-		}
-		@if (!string.IsNullOrEmpty(Model.TwitterLink))
-		{
-			<li>
-				<a class="twitter" href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">
-					@T("Footer.FollowUs.Twitter")
-				</a>
-			</li>
-		}
-		@if (!string.IsNullOrEmpty(Model.YoutubeLink))
-		{
-			<li>
-				<a class="youtube" href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">
-					@T("Footer.FollowUs.Youtube")
-				</a>
-			</li>
-		}
-		@if (!string.IsNullOrEmpty(Model.InstagramLink))
-		{
-			<li>
-				<a class="instagram" href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">
-					@T("Footer.FollowUs.Instagram")
-				</a>
-			</li>
-		}
-		@if (Model.NewsEnabled)
-		{
-			<li>
-				<a class="rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">
-					@T("Footer.FollowUs.RSS")
-				</a>
-			</li>
-		}
-	</ul>
-</nav>
+@if (hasFacebookLink || hasTwitterLink || hasYoutubeLink || hasInstagramLink || Model.NewsEnabled) {
+	<nav class="content-box   content-box--social-buttons">
+		<h2>@T("Footer.FollowUs")</h2>
+		<ul>
+			@if (hasFacebookLink)
+			{
+				<li>
+					<a class="facebook" href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Facebook")</a>
+				</li>
+			}
+			@if (hasTwitterLink)
+			{
+				<li>
+					<a class="twitter" href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Twitter")</a>
+				</li>
+			}
+			@if (hasYoutubeLink)
+			{
+				<li>
+					<a class="youtube" href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Youtube")</a>
+				</li>
+			}
+			@if (hasInstagramLink)
+			{
+				<li>
+					<a class="instagram" href="@Model.InstagramLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Instagram")</a>
+				</li>
+			}
+			@if (Model.NewsEnabled)
+			{
+				<li>
+					<a class="rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">@T("Footer.FollowUs.RSS")</a>
+				</li>
+			}
+		</ul>
+	</nav>
+}
