@@ -1,13 +1,4 @@
-﻿@inject IThemeContext themeContext
-
-@{
-	var themeName = await themeContext.GetWorkingThemeNameAsync();
-	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/body-footer.css");
-	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/content-box.css");
-	NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/footer-generator.css");
-}
-
-<footer class="footer">
+﻿<footer class="footer">
 	<div class="footer__top">
 		@await Html.PartialAsync("InformationNav.cshtml")
 		@await Html.PartialAsync("CustomerServiceNav.cshtml")
