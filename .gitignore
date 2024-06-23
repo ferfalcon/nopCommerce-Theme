@@ -453,3 +453,4 @@ Areas
 wwwroot
 Logs
 web.config
+Plugins/Widgets.GoogleAnalytics/plugin.json
