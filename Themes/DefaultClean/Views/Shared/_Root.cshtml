@@ -32,3 +32,19 @@
 
 @await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
 @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })
+
+<script asp-location="Footer">
+	$(function () {
+		$('.block .title').on('click', function () {
+			var e = window, a = 'inner';
+			if (!('innerWidth' in window)) {
+				a = 'client';
+				e = document.documentElement || document.body;
+			}
+			var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+			if (result.width < 1001) {
+				$(this).siblings('.listbox').slideToggle('slow');
+			}
+		});
+	});
+</script>
